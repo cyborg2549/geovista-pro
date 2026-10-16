@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoVista Pro</title>
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark">G</div>
+          <div>
+            <div class="brand-title">GeoVista Pro</div>
+            <div class="brand-subtitle">GIS workspace</div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-label">Map tools</div>
+          <div class="button-group">
+            <button class="tool-btn active" data-tool="pan">Pan</button>
+            <button class="tool-btn" data-tool="measure">Measure</button>
+            <button class="tool-btn" data-tool="identify">Identify</button>
+            <button class="tool-btn" data-tool="add-point">Add point</button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-label">Basemap</div>
+          <select id="basemapSelect" class="control-select" aria-label="Choose a basemap">
+            <option value="topo">Topographic</option>
+            <option value="dark">Dark</option>
+            <option value="satellite">Satellite imagery (online)</option>
+            <option value="offline">Offline grid</option>
+          </select>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-label">Layers</div>
+          <label class="layer-toggle">
+            <input type="checkbox" checked data-layer="basemap" />
+            <span>Basemap</span>
+          </label>
+          <label class="layer-toggle">
+            <input type="checkbox" checked data-layer="parcels" />
+            <span>Parcels</span>
+          </label>
+          <label class="layer-toggle">
+            <input type="checkbox" checked data-layer="roads" />
+            <span>Roads</span>
+          </label>
+          <label class="layer-toggle">
+            <input type="checkbox" checked data-layer="sites" />
+            <span>Sites</span>
+          </label>
+          <label class="layer-toggle">
+            <input type="checkbox" checked data-layer="uploads" />
+            <span>Uploaded data</span>
+          </label>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-label">Search</div>
+          <div class="search-box">
+            <input id="searchInput" type="text" placeholder="Search address or site" />
+            <button id="searchBtn">Go</button>
+          </div>
+        </div>
+
+        <div class="panel-section stats-panel">
+          <div class="section-label">Overview</div>
+          <div class="stat-row">
+            <span>Sites</span>
+            <strong id="siteCount">0</strong>
+          </div>
+          <div class="stat-row">
+            <span>Parcels</span>
+            <strong id="parcelCount">0</strong>
+          </div>
+          <div class="stat-row">
+            <span>Road length</span>
+            <strong id="roadLength">0 km</strong>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <div class="topbar-kicker">Map</div>
+            <h1>Urban planning dashboard</h1>
+          </div>
+          <div class="topbar-actions">
+            <span id="connectionStatus" class="connection-status" role="status">Checking connection…</span>
+            <button id="locateBtn" class="action-btn secondary">Locate Me</button>
+            <button id="measureBtn" class="action-btn secondary">Measure</button>
+            <button id="geojsonUploadBtn" class="action-btn secondary">Load GeoJSON</button>
+            <button id="exportGeojsonBtn" class="action-btn secondary">Export data</button>
+            <button id="saveProjectBtn" class="action-btn secondary">Save project</button>
+            <button id="resetViewBtn" class="action-btn primary">Reset</button>
+            <input id="geojsonInput" type="file" accept=".geojson,.json" hidden />
+          </div>
+        </header>
+
+        <div class="map-wrapper">
+          <div id="map"></div>
+          <div id="appStatus" class="app-status" role="status" aria-live="polite"></div>
+          <div id="featurePanel" class="floating-panel">
+            <h3>Project summary</h3>
+            <p>Ready for site analysis and spatial planning.</p>
+            <ul>
+              <li>Active parcels: <strong id="activeParcels">0</strong></li>
+              <li>Planning sites: <strong id="planningSites">0</strong></li>
+              <li>Basemap: <strong id="basemapName">Satellite imagery</strong></li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="vendor/leaflet/leaflet.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "GeoVista Pro GIS Workspace",
+  "short_name": "GeoVista",
+  "description": "Offline-ready GIS mapping workspace",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
